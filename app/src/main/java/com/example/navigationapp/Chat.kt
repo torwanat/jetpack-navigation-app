@@ -27,11 +27,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import com.example.navigationapp.ui.theme.NavigationAppTheme
 
 data class Message(val author: String, val body: String)
@@ -84,9 +87,23 @@ fun MessageCard(msg: Message) {
 
 @Composable
 fun Conversation(messages: List<Message>, modifier: Modifier) {
-    LazyColumn(modifier) {
-        items(messages) {
-                message -> MessageCard(message)
+    Column(modifier) {
+        Row(
+            Modifier
+                .padding(bottom = 30.dp)
+                .background(MaterialTheme.colorScheme.primaryContainer)
+                .fillMaxWidth()
+                .height(40.dp),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.Center,
+
+        ) {
+            Text("Does this work")
+        }
+        LazyColumn() {
+            items(messages) {
+                    message -> MessageCard(message)
+            }
         }
     }
 }
