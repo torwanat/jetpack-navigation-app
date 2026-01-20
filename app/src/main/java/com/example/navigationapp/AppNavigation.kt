@@ -14,10 +14,10 @@ fun AppNavigation(){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Routes.chat, builder = {
         composable(Routes.chat) {
-            Chat()
+            Chat(navController = navController)
         }
         composable(Routes.secondScreen) {
-            SimpleSecondScreen()
+            SimpleSecondScreen(navController = navController)
         }
     })
 }

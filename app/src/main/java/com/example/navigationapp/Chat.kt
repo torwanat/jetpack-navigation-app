@@ -31,10 +31,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import com.example.navigationapp.ui.theme.NavigationAppTheme
 
 data class Message(val author: String, val body: String)
@@ -86,19 +88,23 @@ fun MessageCard(msg: Message) {
 }
 
 @Composable
-fun Conversation(messages: List<Message>, modifier: Modifier) {
+fun Conversation(messages: List<Message>, modifier: Modifier, navController: NavController) {
     Column(modifier) {
         Row(
             Modifier
-                .padding(bottom = 30.dp)
+                .padding(bottom = 10.dp)
                 .background(MaterialTheme.colorScheme.primaryContainer)
                 .fillMaxWidth()
-                .height(40.dp),
+                .height(50.dp),
             verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.End,
 
         ) {
-            Text("Does this work")
+            Button(onClick = {
+                navController.navigate(Routes.secondScreen)
+            }) {
+                Text("Go to the second screen")
+            }
         }
         LazyColumn() {
             items(messages) {
@@ -109,14 +115,15 @@ fun Conversation(messages: List<Message>, modifier: Modifier) {
 }
 
 @Composable
-fun Chat() {
+fun Chat(navController: NavController) {
     NavigationAppTheme {
         Scaffold(
             contentWindowInsets = ScaffoldDefaults.contentWindowInsets,
         ) { padding ->
             Conversation(
                 SampleData.conversationSample,
-                modifier = Modifier.padding(padding)
+                modifier = Modifier.padding(padding),
+                navController = navController
             )
         }
     }
