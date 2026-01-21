@@ -32,7 +32,7 @@ fun SimpleSecondScreen(navController: NavController){
                 modifier = Modifier.padding(all = 10.dp)
             )
             Button(onClick = {
-                navController.popBackStack()
+                navController.popBackStack(Routes.chat, false)
             }) {
                 Text(text = "Go back to chat")
             }
