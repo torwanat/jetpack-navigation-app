@@ -34,9 +34,7 @@ fun SimpleSecondScreen(navController: NavController){
             Button(onClick = {
                 navController.popBackStack()
             }) {
-                Text(
-                    text = "Go back to chat",
-                )
+                Text(text = "Go back to chat")
             }
         }
     }
