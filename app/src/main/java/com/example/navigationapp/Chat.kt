@@ -29,13 +29,13 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.example.navigationapp.ui.theme.NavigationAppTheme
 
@@ -100,13 +100,16 @@ fun Conversation(messages: List<Message>, modifier: Modifier, navController: Nav
             horizontalArrangement = Arrangement.End,
 
         ) {
-            Button(onClick = {
+            IconButton(onClick = {
                 navController.navigate(Routes.secondScreen)
             }) {
-                Text("Go to the second screen")
+                Icon(
+                    painter = painterResource(id = R.drawable.baseline_settings_24),
+                    contentDescription = "Settings button"
+                )
             }
         }
-        LazyColumn() {
+        LazyColumn {
             items(messages) {
                     message -> MessageCard(message)
             }
