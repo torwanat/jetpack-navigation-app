@@ -21,7 +21,7 @@ fun SimpleSecondScreen(navController: NavController){
         ) {
             Text("This is the second screen")
             Button(onClick = {
-                navController.navigate(Routes.chat)
+                navController.popBackStack()
             }) {
                 Text("Go back to chat")
             }
